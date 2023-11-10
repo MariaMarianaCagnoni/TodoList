@@ -21,13 +21,13 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(length = 10000,nullable = false)
     private String description;
 
     @Column
     private LocalDateTime dateAndTime;
 
-    @Column
+    @Column(nullable = false)
     private boolean completed;
 
 }
