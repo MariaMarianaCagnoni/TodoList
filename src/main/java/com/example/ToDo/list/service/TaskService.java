@@ -21,7 +21,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task Createtask(Task entity) {
+    public Task createTask(Task entity) {
         return taskRepository.save(entity);
     }
 
