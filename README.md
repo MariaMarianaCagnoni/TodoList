@@ -16,6 +16,7 @@ Um CRUD onde  tarefas podem ser adicionadas,modificadas,criadas e deletadas.
 - JPA / Hibernate
 - Gradle
 - Mapstruct
+- Swagger
 
 # Como executar o projeto
 
@@ -33,7 +34,9 @@ cd To-Do-list
 ./gradlew bootRun
 
 ```
-
+## Docs da API
+caso seja localhost:
+http://localhost:8080/swagger-ui/index.html
 
 
 # Autora
