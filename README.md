@@ -1,0 +1,43 @@
+# TODO list
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/neliocursos/exemplo-readme/blob/main/LICENSE)
+
+# Sobre o projeto
+
+Uma API RESTful de um TODO List.
+Um CRUD onde  tarefas podem ser adicionadas,modificadas,criadas e deletadas.
+
+
+## URL
+![diagram.jpg](..%2F..%2FDownloads%2Fdiagram.jpg)
+# Tecnologias utilizadas
+## Back end
+- Java
+- Spring Boot
+- JPA / Hibernate
+- Gradle
+- Mapstruct
+
+# Como executar o projeto
+
+## Back end
+Pré-requisitos: Java 21
+
+```bash
+# clonar repositório
+git clone
+
+# entrar no diretorio
+cd To-Do-list
+
+# executar o projeto
+./gradlew bootRun
+
+```
+
+
+
+# Autora
+
+Maria Mariana cagnoni Ferreira
+
+https://www.linkedin.com/in/maria-mariana-cagnoni-ferreira-8a589417a/
