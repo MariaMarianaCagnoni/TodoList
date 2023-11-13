@@ -25,6 +25,7 @@ public class TaskController {
 
     public TaskController(TaskService taskService, TaskMapper taskMapper) {
         this.taskService = taskService;
+
         this.taskMapper = taskMapper;
     }
 
@@ -32,34 +33,54 @@ public class TaskController {
     @GetMapping("/{id}")
     public ResponseEntity<TaskDTO> findById(@PathVariable Long id) {
         Task task = taskService.findTaskById(id);
-        TaskDTO taskDTO = taskMapper.taskToTaskDTO(task);
+        TaskDTO taskDTO = taskMapper.toDto(task);
         return new ResponseEntity<>(taskDTO, HttpStatus.OK);
     }
 
     @PostMapping()
     public ResponseEntity<TaskDTO> createTask(@RequestBody TaskDTO taskDTO) {
-        Task task = taskMapper.taskDTOToTask(taskDTO);
-        TaskDTO createdTaskDTO = taskMapper.taskToTaskDTO(task);
-        return new ResponseEntity<>(createdTaskDTO, HttpStatus.CREATED);
+        // Usando o mapeamento do TaskMapper para converter TaskDTO para Task
+        Task task = taskMapper.toEntity(taskDTO);
+
+        // Chama o serviço para criar a tarefa
+        Task newTask = taskService.createTask(task);
+
+        // Converte a nova tarefa de volta para TaskDTO
+        TaskDTO newTaskDTO = taskMapper.toDto(newTask);
+
+        return new ResponseEntity<>(newTaskDTO, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<TaskDTO>> findAllTasks() {
         List<Task> allTasks = taskService.findAllTasks();
-        List<TaskDTO> allTasksDTO = taskMapper.tasksToTaskDTOs(allTasks);
-        return new ResponseEntity<>(allTasksDTO, HttpStatus.OK);
+        List<TaskDTO> allTaskDTOs = taskMapper.toDto(allTasks);
+        return new ResponseEntity<>(allTaskDTOs, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TaskDTO> updateTask(
             @PathVariable Long id,
-            @RequestParam String newDescription,
-            @RequestParam boolean newCompleted) {
+            @RequestBody TaskDTO requestDTO) {
+
+        Task request = taskMapper.toEntity(requestDTO);
+
+        String newDescription = request.getDescription();
+        boolean newCompleted = request.isCompleted();
 
         Task updatedTask = taskService.updateTask(id, newDescription, newCompleted);
-        TaskDTO updatedTaskDTO = taskMapper.taskToTaskDTO(updatedTask);
+        TaskDTO updatedTaskDTO = taskMapper.toDto(updatedTask);
+
         return new ResponseEntity<>(updatedTaskDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTaskById(@PathVariable Long id) {
+        taskService.deleteTaskById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
 }
+
+
