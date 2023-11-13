@@ -1,8 +1,7 @@
 package com.example.ToDo.list.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -11,23 +10,27 @@ import java.time.LocalDateTime;
  * @Project: To-Do-list
  */
 
-@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "task")
+@Table(name = "TASK")
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10000,nullable = false)
+    @Column(length = 10000, nullable = false)
     private String description;
 
-    @Column
+    @Column(name = "DATE_AND_TIME")
     private LocalDateTime dateAndTime;
 
     @Column(nullable = false)
     private boolean completed;
+
 
 }

@@ -2,7 +2,9 @@ package com.example.ToDo.list.service;
 
 import com.example.ToDo.list.domain.Task;
 import com.example.ToDo.list.repository.TaskRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,8 +22,12 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task createTask(Task entity) {
-        return taskRepository.save(entity);
+    @Transactional
+    public Task createTask(Task newTask) {
+        if (newTask.getId() != null && taskRepository.existsById(newTask.getId())) {
+            throw new IllegalArgumentException("Já existe uma task com esse ID.");
+        }
+        return taskRepository.save(newTask);
     }
 
     public List<Task> findAllTasks() {
@@ -35,9 +41,11 @@ public class TaskService {
 
     public void deleteTaskById(Long id) {
         this.taskRepository.deleteById(id);
+
     }
 
 
+    @Transactional
     public Task updateTask(Long id, String newDescription, boolean newCompleted) {
         Task taskToUpdate = findTaskById(id);
         taskToUpdate.setDescription(newDescription);
