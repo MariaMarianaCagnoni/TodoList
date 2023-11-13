@@ -25,7 +25,7 @@ Pré-requisitos: Java 21
 
 ```bash
 # clonar repositório
-git clone
+git clone git@github.com:MariaMarianaCagnoni/TodoList.git
 
 # entrar no diretorio
 cd To-Do-list
