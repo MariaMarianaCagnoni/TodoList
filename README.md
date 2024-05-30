@@ -35,7 +35,7 @@ cd To-Do-list
 
 ```
 ## Docs da API
-caso seja localhost:
+acesso em localhost:
 http://localhost:8080/swagger-ui/index.html
 
 

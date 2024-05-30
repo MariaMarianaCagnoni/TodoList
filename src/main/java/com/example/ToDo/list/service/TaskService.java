@@ -44,7 +44,6 @@ public class TaskService {
 
     }
 
-
     @Transactional
     public Task updateTask(Long id, String newDescription, boolean newCompleted) {
         Task taskToUpdate = findTaskById(id);

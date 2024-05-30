@@ -29,7 +29,6 @@ public class TaskController {
         this.taskMapper = taskMapper;
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<TaskDTO> findById(@PathVariable Long id) {
         Task task = taskService.findTaskById(id);

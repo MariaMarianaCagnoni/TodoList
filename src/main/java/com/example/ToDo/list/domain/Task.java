@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "TASK")
+@Table(name = "task")
 public class Task {
 
     @Id
@@ -26,7 +26,7 @@ public class Task {
     @Column(length = 10000, nullable = false)
     private String description;
 
-    @Column(name = "DATE_AND_TIME")
+    @Column(name = "date_and_time")
     private LocalDateTime dateAndTime;
 
     @Column(nullable = false)
