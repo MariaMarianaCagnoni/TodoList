@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
  * @Project: To-Do-list
  */
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "task")
 public class Task {
@@ -23,14 +23,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10000, nullable = false)
+    @Column(name = "description", length = 10000, nullable = false)
     private String description;
 
     @Column(name = "date_and_time")
     private LocalDateTime dateAndTime;
 
-    @Column(nullable = false)
-    private boolean completed;
+    @Column(name = "is_completed", nullable = false)
+    private boolean isCompleted;
 
 
 }

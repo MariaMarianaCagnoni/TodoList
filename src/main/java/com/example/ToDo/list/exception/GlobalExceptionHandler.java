@@ -1,5 +1,6 @@
 package com.example.ToDo.list.exception;
 
+import lombok.extern.log4j.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,20 +15,20 @@ import java.util.NoSuchElementException;
  * @Project: To-Do-list
  */
 
+@Log4j2
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handler(NoSuchElementException notFoundException) {
-        logger.error("Unexceptional server error,see the logs ", notFoundException);
+        log.error("Unexceptional server error,see the logs ", notFoundException);
         return new ResponseEntity<>("Resource Id not found", HttpStatus.NO_CONTENT);
     }
 
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<String> handlerUnexpected(Throwable unexception) {
-        logger.error("Unexceptional server error,see the logs ", unexception);
+        log.error("Unexceptional server error,see the logs ", unexception);
         return new ResponseEntity<>("Unexceptional server error", HttpStatus.NO_CONTENT);
     }
 }
