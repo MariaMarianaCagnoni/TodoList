@@ -7,8 +7,6 @@ Uma API RESTful de um TODO List.
 Um CRUD onde  tarefas podem ser adicionadas,modificadas,criadas e deletadas.
 
 
-## URL
-![diagram.jpg](..%2F..%2FDownloads%2Fdiagram.jpg)
 # Tecnologias utilizadas
 ## Back end
 - Java
